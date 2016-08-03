@@ -15,12 +15,24 @@
 	MyPair result = OrdersList.listOrders(user_name);
 	ArrayList merchandise_name = result.getElement1();
 	ArrayList total_price = result.getElement2();
-	response.getWriter().println("current user's orders are listed as below");
-	response.getWriter().println("merchandise name		total price");
-	int size = merchandise_name.size();
-	for (int i=0; i<size;i++){
-		response.getWriter().println(merchandise_name.get(i) + "	" + total_price.get(i));
-	}
- %>
+%>
+Current user's orders are listed as below
+
+<table>
+<tr>
+<td>Merchandise Name</td>
+<td>Total Price</td>
+</tr>
+<%
+for (int i=0; i<merchandise_name.size();i++)
+{
+%>
+<tr>
+<td><%=merchandise_name.get(i) %></td>
+<td><%=total_price.get(i) %></td>
+</tr>
+<%} %>
+</table>
+
 </body>
 </html>

@@ -10,17 +10,29 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+<pre>
+<table>
 <% 
 	MyPair result = MerchandiseList.listMerchandise();
 	ArrayList merchandise_name = result.getElement1();
 	ArrayList price = result.getElement2();
 	int len = merchandise_name.size();
-		
-	response.getWriter().println("Merchandise Name		Price		" + "\n");
-		
-	for(int i=0;i<len;i++){
-		response.getWriter().println(merchandise_name.get(i) + "	" + price.get(i) + "\n");
-	}
 %>
+<tr>
+<td>Merchandise Name</td>
+<td>Price</td>
+</tr>
+<%		
+	for(int i=0;i<len;i++){
+%>
+<tr>
+<td><%=merchandise_name.get(i) %></td>
+<td><%=price.get(i) %>	</td>
+</tr>				
+<%	}%>
+</table>
+</pre>
+
 </body>
 </html>

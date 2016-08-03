@@ -9,7 +9,7 @@
 <body>
 Welcome to visit our simplified ordering system! Please login first!
 
-<form action="main" method="post">
+<form action="welcome.jsp" method="post">
 	user name: 
 	<input type="text" name="username" /><br>
 	password: 

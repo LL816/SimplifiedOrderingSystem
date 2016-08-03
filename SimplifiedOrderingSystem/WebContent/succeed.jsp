@@ -12,13 +12,13 @@
 
 <br>
 
-<form action="merchandise" method="post">
+<form action="merchandise.jsp" method="post">
 <input type="submit" value="merchandise list"/>
 </form>
 
 <br>
 
-<form action="orders" method="post">
+<form action="orders.jsp" method="post">
 <input type="submit" value="my orders"/>
 </form>
 

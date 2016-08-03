@@ -39,8 +39,9 @@ public class main extends HttpServlet {
 		
 		String user_name = request.getParameter("username");
 		String passwd = request.getParameter("password");
-		validation valid = new validation();
-		boolean result = valid.verify(user_name, passwd);
+		boolean result = validation.verify(user_name, passwd);
+		
+		request.getSession().setAttribute("user_name", user_name);
 		
 		if (result){
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/succeed.jsp");

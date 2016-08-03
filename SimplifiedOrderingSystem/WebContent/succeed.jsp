@@ -7,7 +7,8 @@
 <title>Congrats!</title>
 </head>
 <body>
-You have been successfully logged in to our system!
+<%String username = session.getAttribute("user_name").toString(); %>
+<%=username %> have been successfully logged in to our system!
 
 <br>
 

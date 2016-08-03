@@ -10,8 +10,8 @@ public class validation
 {
 	public static boolean verify(String name, String passwd){
 		Connection connection = null;
-		PreparedStatement pst;
-		ResultSet rst;
+		PreparedStatement pst = null;
+		ResultSet rst = null;
 		boolean status = false;
 		
 		try{
@@ -42,15 +42,14 @@ public class validation
 			}finally{
 				try {
 					connection.close();
+					pst.close();
+					rst.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
+					System.out.println("fail to close connection");
 					e.printStackTrace();
 				}
-
 			}
-		}
-			
+		}			
 		return status;
-	}
-	
+	}	
 }

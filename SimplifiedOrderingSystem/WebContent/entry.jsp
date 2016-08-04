@@ -9,9 +9,9 @@
 <body>
 Welcome to visit our simplified ordering system! Please login first!
 
-<form action="welcome.jsp" method="post">
+<form action="main" method="post">
 	user name: 
-	<input type="text" name="username" /><br>
+	<input type="text" name="username" required="required"/><br>
 	password: 
 	<input type="password" name="password" required="required"/><br>
 	<div style="color: #FF0000;">${errorMessage}</div>

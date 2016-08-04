@@ -16,6 +16,8 @@
 	ArrayList merchandise_name = result.getElement1();
 	ArrayList total_price = result.getElement2();
 %>
+<div style="color: #FF0000;">${new_order}</div>
+
 Current user's orders are listed as below
 
 <table>
@@ -30,6 +32,7 @@ for (int i=0; i<merchandise_name.size();i++)
 <tr>
 <td><%=merchandise_name.get(i) %></td>
 <td><%=total_price.get(i) %></td>
+
 </tr>
 <%} %>
 </table>

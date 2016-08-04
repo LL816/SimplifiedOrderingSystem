@@ -38,8 +38,8 @@ public class merchandise extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		MyPair result = MerchandiseList.listMerchandise();
-		ArrayList merchandise_name = result.getElement1();
-		ArrayList price = result.getElement2();
+		ArrayList merchandise_name = result.getElement(0);
+		ArrayList price = result.getElement(1);
 		int len = merchandise_name.size();
 		
 		response.getWriter().println("Merchandise Name		Price		" + "\n");

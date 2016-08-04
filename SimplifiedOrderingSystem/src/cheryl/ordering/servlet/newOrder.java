@@ -40,7 +40,7 @@ public class newOrder extends HttpServlet {
 		String merchandise_name = request.getParameter("merchandise_name");
 		int num = Integer.valueOf(request.getParameter("number"));
 		
-		request.setAttribute("new_order", "A new order has been submitted successfully!");
+		request.setAttribute("message", "A new order has been submitted successfully!");
 		if(NewOrder.newOrder(user_name, merchandise_name, num)==1){
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/orders.jsp");
 			dispatcher.forward(request, response);

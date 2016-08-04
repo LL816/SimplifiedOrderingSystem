@@ -14,8 +14,8 @@
 <table>
 <% 
 	MyPair result = MerchandiseList.listMerchandise();
-	ArrayList merchandise_name = result.getElement1();
-	ArrayList price = result.getElement2();
+	ArrayList merchandise_name = result.getElement(0);
+	ArrayList price = result.getElement(1);
 	int len = merchandise_name.size();
 %>
 <tr>

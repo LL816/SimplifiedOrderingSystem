@@ -1,23 +1,38 @@
 package cheryl.ordering.comprise;
+
 import java.util.ArrayList;
 
 public class MyPair {
-	private ArrayList element1;
-	private ArrayList element2;
+	private int element_num;
+	private ArrayList<ArrayList> element;
+
+	@SuppressWarnings("unchecked")
 	public MyPair(){
-		element1 = new ArrayList();
-		element2 = new ArrayList();
+		element_num = 0;
+		element = new ArrayList();
 	}
-	public MyPair(ArrayList temp1, ArrayList temp2){
-		element1 = temp1;
-		element2 = temp2;
+	public MyPair(int defined_num){
+		element_num = defined_num;
+		element = new ArrayList<ArrayList>();
 	}
 	
-	public ArrayList getElement1(){
-		return element1;
+	public void setElement(int index, ArrayList target){
+		if(index < element_num){
+			element.add(index, target);
+		}
+		else{
+			System.out.print("Out of range");
+		}
 	}
-	public ArrayList getElement2(){
-		return element2;
+	
+	public ArrayList getElement(int index){
+		if(index < element_num){
+			return element.get(index);
+		}
+		else{
+			System.out.print("Out of range");
+			return null;
+		}
 	}
 
 }

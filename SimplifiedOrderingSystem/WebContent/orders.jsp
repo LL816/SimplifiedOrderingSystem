@@ -13,10 +13,11 @@
 <%		
 	String user_name = request.getSession().getAttribute("user_name").toString();
 	MyPair result = OrdersList.listOrders(user_name);
-	ArrayList merchandise_name = result.getElement1();
-	ArrayList total_price = result.getElement2();
+	ArrayList merchandise_name = result.getElement(0);
+	ArrayList total_price = result.getElement(1);
+	ArrayList order_id = result.getElement(2);
 %>
-<div style="color: #FF0000;">${new_order}</div>
+<div style="color: #FF0000;">${message}</div>
 
 Current user's orders are listed as below
 
@@ -24,6 +25,7 @@ Current user's orders are listed as below
 <tr>
 <td>Merchandise Name</td>
 <td>Total Price</td>
+<td>Number</td>
 </tr>
 <%
 for (int i=0; i<merchandise_name.size();i++)
@@ -32,7 +34,10 @@ for (int i=0; i<merchandise_name.size();i++)
 <tr>
 <td><%=merchandise_name.get(i) %></td>
 <td><%=total_price.get(i) %></td>
-
+<form action="deleteOrders" method="post">
+<input type="hidden" name="order_id" value=<%=order_id.get(i) %> />
+<td><input type="submit" value="Delete"/></td>
+</form>
 </tr>
 <%} %>
 </table>

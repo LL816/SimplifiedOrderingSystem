@@ -6,22 +6,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.RequestDispatcher;
 
-import cheryl.ordering.comprise.OrdersList;
-import cheryl.ordering.comprise.MyPair;
-import java.util.ArrayList;
-
+import cheryl.ordering.comprise.DeleteOrders;
 /**
- * Servlet implementation class orders
+ * Servlet implementation class delete
  */
-@WebServlet("/orders")
-public class orders extends HttpServlet {
+@WebServlet("/deleteOrders")
+public class deleteOrders extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public orders() {
+    public deleteOrders() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,20 +35,13 @@ public class orders extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String user_name = request.getSession().getAttribute("user_name").toString();
-//		response.getWriter().println(user_name.toString());
-		/**/
-		MyPair result = OrdersList.listOrders(user_name);
-		ArrayList merchandise_name = result.getElement(0);
-		ArrayList total_price = result.getElement(1);
-		response.getWriter().println("current user's orders are listed as below");
-		response.getWriter().println("merchandise name		total price");
-		int size = merchandise_name.size();
-		for (int i=0; i<size;i++){
-			response.getWriter().println(merchandise_name.get(i) + "	" + total_price.get(i));
+		String order_id = request.getParameter("order_id");
+		if (DeleteOrders.deleteOrders(order_id)==1){
+			request.setAttribute("message", "an order has been deleted successfully");
+			System.out.println("ready for dispatch");
+			RequestDispatcher dispatch = request.getRequestDispatcher("/orders.jsp");
+			dispatch.forward(request, response);
 		}
-		
 	}
 
 }

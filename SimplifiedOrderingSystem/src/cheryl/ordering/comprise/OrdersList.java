@@ -17,8 +17,8 @@ public class OrdersList {
 		ResultSet rst = null;
 		ArrayList merchandise_name = new ArrayList();
 		ArrayList total_price = new ArrayList();
-		MyPair result;
-		
+		ArrayList order_id = new ArrayList();
+		int element_number = 3;
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
 		}catch(ClassNotFoundException e){
@@ -33,13 +33,14 @@ public class OrdersList {
 		}
 		if(conn!=null){
 			try{
-				String sql = "select usersinfo.user_name, merchandise.merchandise_name, round(merchandise.price * orders.num,2) as total_price from ordering.orders inner join ordering.usersinfo inner join ordering.merchandise on orders.user_id = usersinfo.user_id and orders.merchandise_id = merchandise.merchandise_id where user_name=?";
+				String sql = "select usersinfo.user_name, merchandise.merchandise_name, round(merchandise.price * orders.num,2) as total_price, orders.order_id from ordering.orders inner join ordering.usersinfo inner join ordering.merchandise on orders.user_id = usersinfo.user_id and orders.merchandise_id = merchandise.merchandise_id where user_name=?";
 				pst = conn.prepareStatement(sql);
 				pst.setString(1, username);
 				rst = pst.executeQuery();
 				while(rst.next()){
 					merchandise_name.add(rst.getString("merchandise_name"));
 					total_price.add(rst.getString("total_price"));
+					order_id.add(rst.getString("order_id"));
 				}
 				
 			}catch(SQLException e){
@@ -52,7 +53,10 @@ public class OrdersList {
 			return null;
 		}
 		
-		result = new MyPair(merchandise_name, total_price);
+		MyPair result = new MyPair(element_number);
+		result.setElement(0, merchandise_name);
+		result.setElement(1, total_price);
+		result.setElement(2, order_id);
 		return result;
 	}
 

@@ -5,18 +5,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
 import java.util.ArrayList;
-import cheryl.ordering.comprise.MyPair;
 
-public class MerchandiseList {
-	public static MyPair listMerchandise(){
+public class DeleteOrders {
+	public static int deleteOrders(String order_id){
 		Connection conn = null;
 		PreparedStatement pst = null;
-		ResultSet rst = null;
-		ArrayList merchandise_name = new ArrayList();
-		ArrayList price = new ArrayList();
-		int element_number = 2;
+		int result=0;
+		
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
 		}catch(ClassNotFoundException e){
@@ -31,37 +27,25 @@ public class MerchandiseList {
 		}
 		if(conn!=null){
 			try{
-				String sql = "select merchandise_name, price from ordering.merchandise";
+				String sql="delete from ordering.orders where order_id=?";
 				pst = conn.prepareStatement(sql);
-				rst = pst.executeQuery();
-				while(rst.next()){
-					merchandise_name.add(rst.getString("merchandise_name"));
-					price.add(rst.getString("price"));
-				}
-				
+				pst.setString(1, order_id);
+				result = pst.executeUpdate();
 			}catch(SQLException e){
 				System.out.println("sql statement error");
 				e.printStackTrace();		
 			}finally{
 				try {
 					conn.close();
-					rst.close();
 					pst.close();
 				} catch (SQLException e) {
 					System.out.println("fail to close connection");
 					e.printStackTrace();
 				}
 			}
-		}
-		if(merchandise_name.size() != price.size()){
-			System.out.println("Wrong sql result");
-			return null;
-		}
-		
-		MyPair result = new MyPair(element_number);
-		result.setElement(0, merchandise_name);
-		result.setElement(1, price);
+		}	
 		return result;
+
 	}
 
 }

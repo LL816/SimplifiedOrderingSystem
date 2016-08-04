@@ -9,7 +9,6 @@ import java.sql.SQLException;
 
 public class NewOrder {
 	public static int newOrder(String username, String merchandise_name, int num){
-		System.out.print(username +"  "+ merchandise_name);
 		Connection conn=null;
 		PreparedStatement pst=null;
 		ResultSet rst=null;

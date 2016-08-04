@@ -10,6 +10,10 @@
 </head>
 <body>
 
+<form action="succeed.jsp">
+<input type="submit" value="Back"/>
+</form>
+
 
 <table>
 <% 

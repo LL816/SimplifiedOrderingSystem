@@ -22,5 +22,11 @@
 <input type="submit" value="my orders"/>
 </form>
 
+<br>
+
+<form action="entry.jsp">
+<input type="submit" value="Logout"/>
+</form>
+
 </body>
 </html>

@@ -38,7 +38,6 @@ public class deleteOrders extends HttpServlet {
 		String order_id = request.getParameter("order_id");
 		if (DeleteOrders.deleteOrders(order_id)==1){
 			request.setAttribute("message", "an order has been deleted successfully");
-			System.out.println("ready for dispatch");
 			RequestDispatcher dispatch = request.getRequestDispatcher("/orders.jsp");
 			dispatch.forward(request, response);
 		}

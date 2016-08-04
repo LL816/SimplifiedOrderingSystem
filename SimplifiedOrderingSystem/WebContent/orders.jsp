@@ -10,6 +10,10 @@
 </head>
 <body>
 
+<form action="succeed.jsp">
+<input type="submit" value="Back"/>
+</form>
+
 <%		
 	String user_name = request.getSession().getAttribute("user_name").toString();
 	MyPair result = OrdersList.listOrders(user_name);

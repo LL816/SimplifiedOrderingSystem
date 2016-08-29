@@ -29,7 +29,6 @@ Current user's orders are listed as below
 <tr>
 <td>Merchandise Name</td>
 <td>Total Price</td>
-<td>Number</td>
 </tr>
 <%
 for (int i=0; i<merchandise_name.size();i++)

@@ -1,5 +1,6 @@
 package cheryl.ordering.servlet;
 
+
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,8 @@ import cheryl.ordering.comprise.MerchandiseList;
 import cheryl.ordering.comprise.MyPair;
 
 import java.util.ArrayList;
+
+
 /**
  * Servlet implementation class merchandise
  */

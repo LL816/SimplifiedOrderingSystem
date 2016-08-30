@@ -9,7 +9,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<%String refererName = request.getHeader("referer");
+  if(refererName==null || !refererName.startsWith("http://localhost")){
+	response.sendRedirect("/SimplifiedOrderingSystem/entry.jsp");
+	return;
+  }	
+%>
 <form action="succeed.jsp">
 <input type="submit" value="Back"/>
 </form>

@@ -7,6 +7,14 @@
 <title>Congrats!</title>
 </head>
 <body>
+
+<%String refererName = request.getHeader("referer");
+  if(refererName==null || !refererName.startsWith("http://localhost")){
+	response.sendRedirect("/SimplifiedOrderingSystem/entry.jsp");
+	return;
+  }	
+%>
+
 <%String username = session.getAttribute("user_name").toString(); %>
 <%=username %> have been successfully logged in to our system!
 

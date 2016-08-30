@@ -14,7 +14,7 @@ function changeImage(img){
 <body>
 Welcome to visit our simplified ordering system! Please login first!
 
-<form action="main" method="post">
+<form action="/SimplifiedOrderingSystem/main" method="post">
 	user name: 
 	<input type="text" name="username" required="required"/><br>
 	password: 

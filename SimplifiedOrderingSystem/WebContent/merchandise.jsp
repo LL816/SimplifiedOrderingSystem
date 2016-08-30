@@ -10,6 +10,13 @@
 </head>
 <body>
 
+<%String refererName = request.getHeader("referer");
+  if(refererName==null || !refererName.startsWith("http://localhost")){
+	response.sendRedirect("/SimplifiedOrderingSystem/entry.jsp");
+	return;
+  }	
+%>
+
 <form action="succeed.jsp">
 <input type="submit" value="Back"/>
 </form>
@@ -30,7 +37,7 @@
 	for(int i=0;i<len;i++){
 %>
 <tr>
-<form action="newOrder" method="post">  <!--form scope matters-->
+<form action="/SimplifiedOrderingSystem/newOrder" method="post">  <!--form scope matters-->
 <td><%=merchandise_name.get(i) %></td>
 <td><%=price.get(i) %>	</td>
 <td><input type="number" name="number" value="1"/></td>

@@ -45,14 +45,19 @@ public class main extends HttpServlet {
 		request.getSession().setAttribute("user_name", user_name);
 		
 		if (result){
+			/*
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/succeed.jsp");
 			dispatcher.forward(request, response);
+			*/
+			response.sendRedirect("/SimplifiedOrderingSystem/succeed.jsp");
 		}
 		else{
-			request.setAttribute("errorMessage", "invalid username or password! Please try again!");
-			
+			request.getSession().setAttribute("errorMessage", "invalid username or password! Please try again!");
+			/*
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/entry.jsp");
 			dispatcher.forward(request, response);
+			*/
+			response.sendRedirect("/SimplifiedOrderingSystem/entry.jsp");
 		}
 		
 

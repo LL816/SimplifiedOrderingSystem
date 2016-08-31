@@ -9,7 +9,7 @@
 <body>
 
 <%String refererName = request.getHeader("referer");
-  if(refererName==null || !refererName.startsWith("http://localhost")){
+  if(refererName==null || !refererName.startsWith("http://localhost:8080/SimplifiedOrderingSystem/entry.jsp")){
 	response.sendRedirect("/SimplifiedOrderingSystem/entry.jsp");
 	return;
   }	
@@ -37,5 +37,6 @@
 </form>
 
 <div>last access time: ${LAT}</div>
+<a href="/SimplifiedOrderingSystem/deleteCookie" >清除上次登录信息</a>
 </body>
 </html>

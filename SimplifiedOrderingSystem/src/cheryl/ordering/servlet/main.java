@@ -70,7 +70,7 @@ public class main extends HttpServlet {
 			cookie.setMaxAge(30*24*3600);
 			cookie.setPath("/SimplifiedOrderingSystem");
 			response.addCookie(cookie);
-			
+			System.out.print(request.getServletContext().getRealPath(cookie.getPath()));
 			response.sendRedirect("/SimplifiedOrderingSystem/succeed.jsp");
 		}
 		else{

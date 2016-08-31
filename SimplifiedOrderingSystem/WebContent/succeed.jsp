@@ -36,5 +36,6 @@
 <input type="submit" value="Logout"/>
 </form>
 
+<div>last access time: ${LAT}</div>
 </body>
 </html>

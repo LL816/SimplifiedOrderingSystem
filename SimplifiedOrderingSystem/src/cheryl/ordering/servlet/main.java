@@ -2,8 +2,11 @@ package cheryl.ordering.servlet;
 
 
 import java.io.IOException;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -45,10 +48,29 @@ public class main extends HttpServlet {
 		request.getSession().setAttribute("user_name", user_name);
 		
 		if (result){
+//			request.getSession().setAttribute("LAT", "lll");
 			/*
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/succeed.jsp");
 			dispatcher.forward(request, response);
 			*/
+			
+			Cookie cookies[] = request.getCookies();
+			for(int i=0; cookies!=null && i<cookies.length;i++){
+				if(cookies[i].getName().equals("lastAccessTime")){
+					long value = Long.parseLong(cookies[i].getValue());
+					Date lastAccessTime = new Date(value);
+					request.getSession().setAttribute("LAT", lastAccessTime.toLocaleString());
+				}
+				else{
+					request.getSession().setAttribute("LAT", "null");
+				}
+			}		
+					
+			Cookie cookie = new Cookie("lastAccessTime",System.currentTimeMillis()+"");
+			cookie.setMaxAge(30*24*3600);
+			cookie.setPath("/SimplifiedOrderingSystem");
+			response.addCookie(cookie);
+			
 			response.sendRedirect("/SimplifiedOrderingSystem/succeed.jsp");
 		}
 		else{

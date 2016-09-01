@@ -36,7 +36,10 @@ public class deleteOrders extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String order_id = request.getParameter("order_id");
-
+		
+		boolean b = isTokenValid(request);
+		
+		
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
@@ -44,12 +47,40 @@ public class deleteOrders extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		System.out.println("submit");
-		if (DeleteOrders.deleteOrders(order_id)==1){
-			request.setAttribute("message", "an order has been deleted successfully");
-			RequestDispatcher dispatch = request.getRequestDispatcher("/orders.jsp");
-			dispatch.forward(request, response);
+		if(!b){
+			request.getSession().setAttribute("message", "invalid repeated delete request");
+//			return;
 		}
+		else{
+			request.getSession().removeAttribute("token");
+			System.out.println("submit");
+			if (DeleteOrders.deleteOrders(order_id)==1){
+				request.getSession().setAttribute("message", "an order has been deleted successfully");
+			}
+		}
+		/*
+		RequestDispatcher dispatch = request.getRequestDispatcher("/orders.jsp");
+		dispatch.forward(request, response);
+		*/
+		response.sendRedirect("/SimplifiedOrderingSystem/orders.jsp");
+
+	}
+
+	private boolean isTokenValid(HttpServletRequest request) {	
+		String tokenClient = request.getParameter("token");
+		System.out.println(tokenClient);
+		if(tokenClient == null){
+			return false;
+		}
+		String tokenServer = (String) request.getSession().getAttribute("token");
+		System.out.println(tokenServer);
+		if(tokenServer == null){
+			return false;
+		}
+		if(!tokenClient.equals(tokenServer)){
+			return false;
+		}
+		return true;
 	}
 
 }

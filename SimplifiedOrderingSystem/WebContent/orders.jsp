@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"
     import="java.io.IOException, javax.servlet.ServletException, javax.servlet.annotation.WebServlet, javax.servlet.http.HttpServlet, javax.servlet.http.HttpServletRequest,
-    		javax.servlet.http.HttpServletResponse, cheryl.ordering.comprise.OrdersList, cheryl.ordering.comprise.MyPair, java.util.ArrayList"%>
+    		javax.servlet.http.HttpServletResponse, cheryl.ordering.comprise.OrdersList, cheryl.ordering.comprise.MyPair, cheryl.ordering.comprise.Token ,java.util.ArrayList"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -61,7 +61,13 @@ for (int i=0; i<merchandise_name.size();i++)
 <td><%=merchandise_name.get(i) %></td>
 <td><%=total_price.get(i) %></td>
 <form action="deleteOrders" method="post" onsubmit="return dosubmit('<%=buttonId %>')">
+<%
+	Token tk = Token.getInstance();
+	String token = tk.generateToken();
+	request.getSession().setAttribute("token",token);
+%>
 <input type="hidden" name="order_id" value=<%=order_id.get(i) %> />
+<input type="hidden" name="token" value=<%=token%> />
 <td><input id=<%=buttonId %> type="submit" value="Delete"/></td>
 </form>
 </tr>

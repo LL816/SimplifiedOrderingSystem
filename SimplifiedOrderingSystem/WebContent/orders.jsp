@@ -8,15 +8,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Order list</title>
 <script type="text/javascript">
-	var iscommitted=false;
-	function dosubmit(){
+//	var iscommitted=false;
+	function dosubmit(buttonId){
+		/*
 		if(!iscommitted){
 			iscommitted=true;		
 			return true;
 		}
 		else{
 			return false;
-		}
+		}*/
+		var input = document.getElementById(buttonId);
+		
+		input.disabled = 'disabled';
+		return true;
 	}
 </script>
 </head>
@@ -50,13 +55,14 @@ Current user's orders are listed as below
 <%
 for (int i=0; i<merchandise_name.size();i++)
 {
+	String buttonId=i+"";
 %>
 <tr>
 <td><%=merchandise_name.get(i) %></td>
 <td><%=total_price.get(i) %></td>
-<form action="deleteOrders" method="post" onsubmit="return dosubmit()">
+<form action="deleteOrders" method="post" onsubmit="return dosubmit('<%=buttonId %>')">
 <input type="hidden" name="order_id" value=<%=order_id.get(i) %> />
-<td><input type="submit" value="Delete"/></td>
+<td><input id=<%=buttonId %> type="submit" value="Delete"/></td>
 </form>
 </tr>
 <%} %>

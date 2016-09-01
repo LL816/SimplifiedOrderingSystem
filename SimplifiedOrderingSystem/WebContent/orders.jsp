@@ -6,7 +6,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Order list</title>
+<script type="text/javascript">
+	var iscommitted=false;
+	function dosubmit(){
+		if(!iscommitted){
+			iscommitted=true;		
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+</script>
 </head>
 <body>
 <%String refererName = request.getHeader("referer");
@@ -42,7 +54,7 @@ for (int i=0; i<merchandise_name.size();i++)
 <tr>
 <td><%=merchandise_name.get(i) %></td>
 <td><%=total_price.get(i) %></td>
-<form action="deleteOrders" method="post">
+<form action="deleteOrders" method="post" onsubmit="return dosubmit()">
 <input type="hidden" name="order_id" value=<%=order_id.get(i) %> />
 <td><input type="submit" value="Delete"/></td>
 </form>

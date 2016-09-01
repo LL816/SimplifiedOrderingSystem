@@ -36,6 +36,15 @@ public class deleteOrders extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String order_id = request.getParameter("order_id");
+
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println("submit");
 		if (DeleteOrders.deleteOrders(order_id)==1){
 			request.setAttribute("message", "an order has been deleted successfully");
 			RequestDispatcher dispatch = request.getRequestDispatcher("/orders.jsp");

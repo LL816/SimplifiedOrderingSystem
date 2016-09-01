@@ -9,7 +9,7 @@
 <body>
 
 <%String refererName = request.getHeader("referer");
-  if(refererName==null || !refererName.startsWith("http://localhost:8080/SimplifiedOrderingSystem/entry.jsp")){
+  if(refererName==null || !refererName.startsWith("http://localhost:8080/SimplifiedOrderingSystem")){
 	response.sendRedirect("/SimplifiedOrderingSystem/entry.jsp");
 	return;
   }	

@@ -35,7 +35,9 @@ public class randomImage extends HttpServlet {
 		setBackground(g);
 		setBorder(g);
 		drawRandomLine(g);
-		drawRandomNum((Graphics2D)g);
+		String num = drawRandomNum((Graphics2D)g);
+		request.setCharacterEncoding("UTF-8");
+		request.getSession().setAttribute("num", num);
 		
 		OutputStream out = response.getOutputStream();
 		response.setContentType("image/jpeg");//通知浏览器将要显示图片
@@ -46,7 +48,7 @@ public class randomImage extends HttpServlet {
 		
 	}
 
-	private void drawRandomNum(Graphics2D g) {
+	private String drawRandomNum(Graphics2D g) {
 		g.setColor(Color.BLACK);
 		g.setFont(new Font("楷体",Font.BOLD,20));
 		
@@ -55,15 +57,17 @@ public class randomImage extends HttpServlet {
 		
 		int posX = 2; //WIDTH=120; interval=30
 		int posY = 20; //HEIGHT=25;
-		
+		StringBuffer num= new StringBuffer();
 		for(int i=0;i<4;i++){
 			String ch = base.charAt(new Random().nextInt(lenOfBase))+"";
+			num.append(ch);
 			int degree = new Random().nextInt()%30;
 			g.rotate(degree*Math.PI/180, posX, posY);
 			g.drawString(ch, posX, posY);
 			g.rotate(-degree*Math.PI/180, posX, posY);
 			posX = posX +30;			
 		}
+		return num.toString();
 	}
 
 	private void drawRandomLine(Graphics g) {

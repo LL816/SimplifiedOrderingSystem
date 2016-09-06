@@ -47,6 +47,20 @@ public class main extends HttpServlet {
 		
 		request.getSession().setAttribute("user_name", user_name);
 		
+//		request.setCharacterEncoding("UTF-8");//中文乱码
+		String inputNum = new String(request.getParameter("verification").getBytes("ISO-8859-1"),"UTF-8");
+		String randomNum = (String) request.getSession().getAttribute("num");
+		
+		System.out.println(inputNum);
+		System.out.println(randomNum);
+		
+		if(!inputNum.equals(randomNum))
+		{
+			request.getSession().setAttribute("errorMessage", "mismatch varification! Please try again!");
+			response.sendRedirect("/SimplifiedOrderingSystem/entry.jsp");
+			return;
+		}
+		
 		if (result){
 //			request.getSession().setAttribute("LAT", "lll");
 			/*
